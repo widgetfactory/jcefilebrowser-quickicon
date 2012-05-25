@@ -4,6 +4,8 @@ JCE File Browser Quick Icon
 Requirements
 ------------
 
+* Joomla! 2.5
+* JCE 2.1.x
 * PHP 5.2+
 * IE 7/8/9, Firefox 3.6+, Chrome 10+, Opera 10+, Safari 5+
 
