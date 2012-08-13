@@ -26,6 +26,14 @@ class plgQuickiconJcefilebrowser extends JPlugin {
      */
     public function __construct(& $subject, $config) {
         parent::__construct($subject, $config);
+        
+        $app = JFactory::getApplication();
+        
+        // only in Admin and only if the component is enabled
+        if ($app->isSite() || JComponentHelper::getComponent('com_jce', true)->enabled === false) {
+            return;
+        }
+        
         $this->loadLanguage();
     }
 
@@ -42,12 +50,9 @@ class plgQuickiconJcefilebrowser extends JPlugin {
      * @since       2.5
      */
     public function onGetIcons($context) {
-        jimport('joomla.application.component.model');
-
-        JModel::addIncludePath(JPATH_ADMINISTRATOR . DS . 'components' . DS . 'com_jce' . DS . 'models');
-        $model = JModel::getInstance('model', 'WF');
-
-        if ($context != $this->params->get('context', 'mod_quickicon') || !$model->authorize('browser')) {
+        require_once(JPATH_ADMINISTRATOR.'/components/com_jce/models/model.php');
+        
+        if ($context != $this->params->get('context', 'mod_quickicon') || WFModel::authorize('browser') === false) {            
             return;
         }
 
