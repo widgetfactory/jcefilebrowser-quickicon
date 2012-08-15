@@ -50,7 +50,7 @@ class plgQuickiconJcefilebrowser extends JPlugin {
      * @since       2.5
      */
     public function onGetIcons($context) {
-        include_once(JPATH_ADMINISTRATOR.'/components/com_jce/models/model.php');
+        @include_once(JPATH_ADMINISTRATOR.'/components/com_jce/models/model.php');
         
         // check for class to prevent fatal errors
         if (!class_exists('WFModel')) {
