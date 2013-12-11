@@ -82,8 +82,9 @@ class plgQuickiconJcefilebrowser extends JPlugin {
         );
 
         require_once(JPATH_ADMINISTRATOR . '/components/com_jce/helpers/browser.php');
-
-        $icon = JVersion::isCompatible('3.0') ? 'pictures' : 'header/icon-48-media.png';
+        
+        $version = new JVersion;
+        $icon = $version->isCompatible('3.0') ? 'pictures' : 'header/icon-48-media.png';
 
         return array(array(
                 'link' => WFBrowserHelper::getBrowserLink('', $filter),
